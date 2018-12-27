@@ -57,6 +57,8 @@ class Soldier extends Unit
 {
     protected $damage = 40;
 
+    //cuando se coloca Unit estamos diciendo que queremos que sea una unidad la que pase por aca
+    // y no una cadena asi si llegamos a pasar una cadena el error va hacer mas especifico
     public function attack(Unit $opponent)
     {
         show(
@@ -68,6 +70,7 @@ class Soldier extends Unit
 
     public function takeDamage($damage)
     {
+        //llama al metodo takeDamage pero de la clase unit el parent:: nos permite hacer esa llamada
         return parent::takeDamage($damage / 2);
     }
 }
@@ -93,6 +96,7 @@ class Archer extends Unit
     }
 }
 
+//Se declara a Ramm como un objeto para que silence pueda atacar y matar a una persona y no a un string
 $ramm = new Soldier('Ramm');
 
 $silence = new Archer('Silence');

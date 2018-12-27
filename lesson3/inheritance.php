@@ -1,5 +1,6 @@
 <?php
 
+//Las clases abstractas no se pueden instanciar y en este caso Unit es como un concepto generico
 abstract class Unit {
     protected $alive = true;
     protected $name;
@@ -14,9 +15,13 @@ abstract class Unit {
         echo "<p>{$this->name} camina hacia $direction</p>";
     }
 
+    //Se define que va a tener un ataaque pero no decimos cual en particular
+    //ya que lo definiran las clases que extienden de esta
+    //los metodos abstractos siempre deben ser implementados
     abstract public function attack($opponent);
 }
 
+//Estas clases solo podran heredar las variables y metodos que este publicos o protejidos los privados no
 class Soldier extends Unit
 {
     public function attack($opponent)
