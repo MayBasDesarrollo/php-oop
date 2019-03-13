@@ -35,10 +35,11 @@ abstract class Unit {
     {
         $this->hp = $this->hp - $this->absorbDamage($damage);
 
-        show("{$this->name} ahora tiene {$this->hp} puntos de vida");
-
         if ($this->hp <= 0) {
+            show("{$this->name} ahora tiene 0 puntos de vida");
             $this->die();
+        }else{
+            show("{$this->name} ahora tiene {$this->hp} puntos de vida");
         }
     }
 
@@ -103,8 +104,11 @@ class Archer extends Unit
     }
 }
 
+// es como un contrato esta interfaz requiere que tengan el metodo que ella declara
+// en pocas palabras las obliga a usar ese metodo
 interface Armor
 {
+    //La Armadura solo va absorber daño
     public function absorbDamage($damage);
 }
 
@@ -137,9 +141,9 @@ $armor = new BronzeArmor();
 $ramm = new Soldier('Ramm');
 
 $silence = new Archer('Silence');
-//$silence->move('el norte');
 $silence->attack($ramm);
 
+//$ramm->setArmor($armor);
 $ramm->setArmor(new CursedArmor);
 
 $silence->attack($ramm);
